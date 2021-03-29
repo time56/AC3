@@ -1,0 +1,17 @@
+	public String parentheticRepresentation(Tree<E> T, Position<E> v) {
+		String s = v.element().toString(); // ação principal de visita
+	    if (T.isInternal(v)) {
+	        Boolean firstTime = true;
+	        for (Position<E> w : T.children(v)) {
+	            if (firstTime) {    // primeiro filho
+	                String tabs = " ";
+					s += "(\n" + tabs + parentheticRepresentation(T, w);
+	                firstTime = false; 
+	            } else {            // filhos seguintes
+	                s += ", " + parentheticRepresentation(T, w);
+	            }
+	           s += ")"; // fecha parênteses
+	        }
+	    }
+	    return s;
+	}

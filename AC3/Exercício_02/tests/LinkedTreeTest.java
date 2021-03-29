@@ -14,6 +14,7 @@ import tad_lista_de_nodos.PositionList;
 class LinkedTreeTest {
 	@Test
 	void test() {
+		
 		TreePosition<String> raiz;
 		Position<Position<String>> p, s;
 		PositionList<Position<String>> filhos;
@@ -99,5 +100,5 @@ class LinkedTreeTest {
 		criarFilho(m, "CD");
 		criarFilho(m, "Tuner");
 		return T;
-	}
+	}	
 }

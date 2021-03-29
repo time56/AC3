@@ -1,0 +1,9 @@
+public Integer height1(Tree<E>T) {
+		int h = 0;
+		for(Position<E> v : T.positions()) {
+			if(T.isExternal(v)) {
+				h = Math.max(h, depth(T,v));
+			}
+		}
+		return h;
+	}

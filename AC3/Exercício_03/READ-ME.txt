@@ -1,0 +1,5 @@
+Os métodos estão também na classe LinkedTree no package do exercício 02, juntamente com o junit de teste;
+
+O package do exercício 3, está somente com os códigos fontes dos métodos.
+
+

@@ -1,5 +1,4 @@
 package source;
-
 import java.util.Iterator;
 import exceptions.BoundaryViolationException;
 import exceptions.EmptyTreeException;
@@ -150,7 +149,70 @@ public class LinkedTree<E> implements Tree<E> {
 		s = (s.length() == 0 ? s : s.substring(2));
 		return "[" + s + "]";
 	}
+
+	public String parentheticRepresentation(Tree<E> T, Position<E> v) {
+		String s = v.element().toString(); // ação principal de visita
+	    if (T.isInternal(v)) {
+	        Boolean firstTime = true;
+	        for (Position<E> w : T.children(v)) {
+	            if (firstTime) {    // primeiro filho	               
+					s += "(\n" + "\t"  +  parentheticRepresentation(T, w);
+	                firstTime = false; 
+	            } else {            // filhos seguintes
+	                s +=  "," + parentheticRepresentation(T, w);
+	            }
+	           s += ")"; // fecha parênteses
+	        }
+	    }
+	    return s;
+	}
+
+	public static <E>String toStringPostorder(Tree<E>T, Position<E>v) {	
+		String s = "";
+		for(Position<E> w : T.children(v)) {
+			s += toStringPostorder(T, w) + " ";
+			s += v.element();			
+		}
+		return s;
+	}
+
+	public Integer depth(Tree<E>T, Position<E>v) {
+		
+		if(T.isRoot(v)){
+			return 0;
+		}else {
+			return 1 + depth(T,T.parent(v));
+		}
+
+	}
+
+	public Integer height1(Tree<E>T) {
+		int h = 0;
+		for(Position<E> v : T.positions()) {
+			if(T.isExternal(v)) {
+				h = Math.max(h, depth(T,v));
+			}
+		}
+		return h;
+	}
+
+	public Integer height2(Tree<E>T, Position<E>v) {
+		if(T.isExternal(v)) {
+			return 0;
+		}
+		int h = 0;
+		for(Position<E> w : T.children(v)) {
+			h = Math.max(h, height2(T, w));			
+		}
+		return 1 + h;			
+
+	}	
+	
+	
+
 }
+
+
 //EXERCÍCIO PARA OS ALUNOS
 //Implementar:
 //depth

@@ -1,0 +1,8 @@
+	public static <E>String toStringPostorder(Tree<E>T, Position<E>v) {	
+		String s = "";
+		for(Position<E> w : T.children(v)) {
+			s += toStringPostorder(T, w) + " ";
+			s += v.element();			
+		}
+		return s;
+	}

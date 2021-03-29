@@ -1,0 +1,11 @@
+public Integer height2(Tree<E>T, Position<E>v) {
+		if(T.isExternal(v)) {
+			return 0;
+		}
+		int h = 0;
+		for(Position<E> w : T.children(v)) {
+			h = Math.max(h, height2(T, w));			
+		}
+		return 1 + h;			
+
+	}	
