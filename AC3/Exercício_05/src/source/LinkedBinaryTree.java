@@ -312,4 +312,53 @@ public class LinkedBinaryTree<E> implements BinaryTree<E>{
 			return Double.parseDouble((String) v.element());
 		}
 	}
+	
+	// Método que percorre a árvore inorder
+	public String inorder(LinkedBinaryTree<E> T, Position<E> v) {
+		String s = "";
+		Position<E> w, u;
+			if (T.hasLeft(v)) {
+				u = T.left(v);
+				s+= T.inorder(T, u);
+			}	
+			s+= v.element();
+			if (T.hasRight(v)) {
+				w = T.right(v);
+				s+= T.inorder(T,  w);
+			} 
+		return s;
+	}
+	
+	public String eulerTour(LinkedBinaryTree<E> T, Position<E> v) {
+		String s = "";
+		Position<E> u, w;
+		s += v.element();
+		if (T.hasLeft(v)) {
+			u = T.left(v);
+			s += T.eulerTour(T, u);
+		}
+		s+= v.element();
+		if (T.hasRight(v)) {
+			w = T.right(v);
+			s+= T.eulerTour(T, w);
+		}
+		s+= v.element();
+		return s;
+	}
+	
+	public String makerBTSearch(LinkedBinaryTree<E> T, Position<E> v) {
+		String s = "";
+		String texto = T.inorder(T, v);
+ 		String numero = "";
+		for (int i = 0; i < texto.length(); i = i + 2) {
+			if (i == texto.length() - 2) {
+				numero = String.valueOf(texto.charAt(i)) + String.valueOf(texto.charAt(i + 1));
+			}else {
+			    numero = String.valueOf(texto.charAt(i)) + String.valueOf(texto.charAt(i + 1)) + ", ";
+			}
+			s += numero;
+		}
+		return s;
+	}
 }
+
